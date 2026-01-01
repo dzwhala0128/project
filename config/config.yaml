@@ -1,0 +1,50 @@
+llm:
+  model_name: qwen2.5-local
+  model_path: /home/data/dengzhenwu/Model File/Qwen2___5-7B-Instruct/
+  temperature: 0.0
+  max_tokens: 256
+  trust_remote_code: true
+  device_map: auto
+  torch_dtype: float16
+  repetition_penalty: 1.05
+  use_chat_template: true
+  system_prompt: "You are a helpful assistant. Follow format constraints strictly. If asked for JSON, output JSON only."
+retrieval:
+  # method options:
+  # - bm25: build an in-memory BM25 index from a folder of .txt/.json/.jsonl files (slow to build if huge)
+  # - sqlite_fts: query an existing SQLite FTS index (recommended if you've built a wiki sqlite from ZIM)
+  method: sqlite_fts
+  # bm25 folder mode
+  sqlite_path: /home/data/dengzhenwu/wiki/db/wiki_2025_08.sqlite
+  max_docs: 200000
+  # sqlite_fts mode (fill these when method=sqlite_fts)
+  fts_table: pages_fts
+  title_col: title
+  text_col: lead  # or text/body/article/plaintext
+  snippet_chars: 2000
+  max_terms: 12
+  timeout: 30.0
+  # shared
+  top_k: 8
+debate:
+  max_rounds: 2
+  debate_level: 2  # 0~3, see prompts/meta_prompts.py
+  mode: hard
+  score_threshold: 0.85
+  max_plan_len: 3
+question_types:
+- Inference
+- Comparison
+- Temporal
+- 'Null'
+operators:
+- cot
+- single_step
+- iterative_step
+- substep
+- adaptive_step
+executor:
+  max_hops: 2
+  per_hop_top_k: 3
+  max_subquestions: 3
+  max_evidence_chunks: 40
