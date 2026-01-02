@@ -92,7 +92,7 @@ class BiLevelMultiAgentDebate:
             rd.slow_raw = self.llm.generate(slow_prompt)
             rd.slow = self._parse_review_json(rd.slow_raw)
 
-            # 5) Judge 112
+            # 5) Judge 11200000
             judge_prompt = self._prompt_judge(question, qtype, rd.affirmative, rd.negative, rd.fast, rd.slow)  # ✅
             rd.judge_raw = self.llm.generate(judge_prompt)
             rd.judge = self._parse_judge_json(rd.judge_raw)
