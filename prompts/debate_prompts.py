@@ -76,7 +76,7 @@ Affirmative (JSON): {affirmative}
 Negative (JSON): {negative}
 
 OUTPUT (JSON ONLY):
-{{"best_plan": ["..."], "score": 0.0, "reason": "..."}}
+{{"best_plan": ["..."], "score": 0.75, "reason": "..."}}
 """
 
 SLOW_REVIEW_PROMPT = """{meta}
@@ -95,13 +95,14 @@ TASK:
 Pick a stable plan (avoid oscillation) and update the running "memory".
 - Prefer plans that clearly cover the necessary hops.
 - If two plans are similar, choose the one that is easier to execute.
+- Provide a numeric "score" in [0.0, 1.0] reflecting confidence in the chosen plan for this question.
 
 INPUT:
 Question: {question}
 Allowed operators: {operators}
 
 OUTPUT (JSON ONLY):
-{{"best_plan": ["..."], "score": 0.0, "reason": "...", "memory": "updated concise notes for next rounds"}}
+{{"best_plan": ["..."], "score": 0.75, "reason": "...", "memory": "updated concise notes for next rounds"}}
 """
 
 JUDGE_PROMPT = """{meta}
@@ -123,7 +124,8 @@ TASK:
 Give the final decision for this round.
 - If the plan is clear and consistent, set converged=true.
 - Otherwise, converged=false but still output the best current plan.
+- Provide a numeric "score" in [0.0, 1.0] reflecting confidence in the chosen plan for this question.
 
 OUTPUT (JSON ONLY):
-{{"best_plan": ["..."], "score": 0.0, "converged": false, "reason": "..."}}
+{{"best_plan": ["..."], "score": 0.75, "converged": false, "reason": "..."}}
 """
