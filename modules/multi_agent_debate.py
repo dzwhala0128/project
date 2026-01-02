@@ -72,7 +72,7 @@ class BiLevelMultiAgentDebate:
         for round_num in range(1, self.max_rounds + 1):
             rd = DebateRound(round_num)
 
-            # 1) Affirmative
+            # 1) Affirmative 232323
             aff_prompt = self._prompt_affirmative(question, qtype)  # ✅
             rd.affirmative_raw = self.llm.generate(aff_prompt)
             rd.affirmative = self._parse_plan_json(rd.affirmative_raw)
