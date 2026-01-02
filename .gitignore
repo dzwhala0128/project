@@ -6,13 +6,16 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+__pycache__/
+*.pyc
+.venv/
 
 # Virtualenv
 .venv/
 venv/
 ENV/
 env/
-
+ 
 # Jupyter
 .ipynb_checkpoints/
 
@@ -34,3 +37,10 @@ data/
 datasets/
 checkpoints/
 models/
+
+# PyCharm / JetBrains
+.idea/
+*.iml
+
+# VS Code
+.vscode/

@@ -114,7 +114,7 @@ class BiLevelMultiAgentDebate:
                     final = self._finalize()
                     final["debate_history"] = self._history_brief()
                     return final
-
+#1223
         # Not converged
         if self.mode == "soft" and scored_candidates:
             scored_candidates.sort(key=lambda x: x["score"], reverse=True)
